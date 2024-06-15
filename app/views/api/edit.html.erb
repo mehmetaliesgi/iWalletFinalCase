@@ -1,0 +1,10 @@
+<div class="container mx-auto p-4">
+  <h2 class="text-2xl font-bold mb-4">Edit User</h2>
+  <%= render partial: "api/shared/form", locals: { 
+    user: @user, 
+    form_url: api_edit_path(@user.id), 
+    form_method: :patch, 
+    submit_button_text: "Update", 
+    user_cancel_path: root_path 
+  } %>
+</div>

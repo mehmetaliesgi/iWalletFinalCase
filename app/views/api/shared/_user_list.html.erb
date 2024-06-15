@@ -1,0 +1,41 @@
+<%= form_with(url: search_users_path, method: :get, data: { controller: "search-form", turbo_frame: "user_list", turbo_action: "advance" }, class: "flex items-center max-w-sm mx-auto pb-4") do %>
+  <div class="relative w-full">
+    <%= text_field_tag :username, params[:username], data: { search_form_target: "input", action: "input->search-form#search" }, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-100 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+  </div>
+  <%= link_to "Clear", root_path, data: { action: "click->search-form#clear" }, class: "p-2.5 ms-2 text-sm font-medium text-gray-700 hover:text-gray-900 focus:text-gray-900" %>
+  <div class="flex">
+    <%= submit_tag "Search", class: "p-2.5 ms-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" %>
+  </div>
+  <%= link_to new_api_path, class: "p-2.5 ms-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" do %>
+    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" fill-rule="evenodd"></path></svg>
+  <% end %>
+<% end %>
+<%= turbo_frame_tag "user_list" do %>
+  <div class="flex-1 w-full">
+    <h2 class="text-2xl font-bold mb-4 text-center ">Users List</h2>
+    <div class="space-y-4">
+      <% if @users.present? %>
+        <% @users.each do |user| %>
+          <div class="flex items-center justify-between bg-white rounded-lg shadow-md p-4">
+            <div class="flex items-center">
+              <%= image_tag user['photo_url'], class: "w-16 h-16 rounded-lg", alt: user['name'] %>
+              <div class="ml-4">
+                <h3 class="text-gray-900 font-medium">
+                  <%= link_to user.name, api_path(user.id), data: { turbo_frame: "_top" } %>
+                </h3>
+                <h3 class="text-gray-900 font-medium"><%= user['username'] %></h3>
+              </div>
+            </div>
+            <div class="text-gray-900 font-semibold">
+              <%= link_to edit_api_path(user.id), data: { turbo_frame: "_top" } do %>
+                <i class="fa-regular fa-pen-to-square"></i>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <p>Kullanıcı Bulunamadı!</p>
+      <% end %>
+    </div>
+  </div>
+<% end %>

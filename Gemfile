@@ -68,3 +68,8 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "faraday", "~> 2.9"
+gem 'turbo-rails'
+gem 'sidekiq'
+gem 'sidekiq-cron'

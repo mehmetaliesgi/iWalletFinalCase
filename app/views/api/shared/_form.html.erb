@@ -1,0 +1,43 @@
+<%= form_tag form_url, method: form_method, class: "space-y-4" do %>
+  <div>
+    <%= label_tag :name, "Name", class: "block text-sm font-medium text-gray-700" %>
+    <%= text_field_tag 'user[name]', @user.present? ? @user['name'] : nil, class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50" %>
+  </div>
+  <div>
+    <%= label_tag :username, "Username", class: "block text-sm font-medium text-gray-700" %>
+    <%= text_field_tag 'user[username]', @user.present? ? @user['username'] : nil, class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50" %>
+  </div>
+  <div>
+    <%= label_tag :email, "Email", class: "block text-sm font-medium text-gray-700" %>
+    <%= email_field_tag 'user[email]', @user.present? ? @user['email'] : nil, class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50" %>
+  </div>
+  <div>
+    <%= label_tag :phone, "Phone", class: "block text-sm font-medium text-gray-700" %>
+    <%= telephone_field_tag 'user[phone]', @user.present? ? @user['phone'] : nil, class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50" %>
+  </div>
+  <div>
+    <h4 class="block text-sm font-medium text-gray-700">Address</h4>
+    <div class="mt-1 space-y-2">
+      <div>
+        <%= label_tag :street, "Street", class: "block text-sm font-medium text-gray-700" %>
+        <%= text_field_tag 'user[address][street]', @user.present? && @user['address'] ? @user['address']['street'] : nil, class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50" %>
+      </div>
+      <div>
+        <%= label_tag :suite, "Suite", class: "block text-sm font-medium text-gray-700" %>
+        <%= text_field_tag 'user[address][suite]', @user.present? && @user['address'] ? @user['address']['suite'] : nil, class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50" %>
+      </div>
+      <div>
+        <%= label_tag :city, "City", class: "block text-sm font-medium text-gray-700" %>
+        <%= text_field_tag 'user[address][city]', @user.present? && @user['address'] ? @user['address']['city'] : nil, class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50" %>
+      </div>
+      <div>
+        <%= label_tag :zipcode, "Zip Code", class: "block text-sm font-medium text-gray-700" %>
+        <%= text_field_tag 'user[address][zipcode]', @user.present? && @user['address'] ? @user['address']['zipcode'] : nil, class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50" %>
+      </div>
+    </div>
+  </div>
+  <div class="flex items-center space-x-4">
+    <%= submit_tag submit_button_text, class: "px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700" %>
+    <%= link_to "Cancel", user_cancel_path, class: "px-4 py-2 bg-gray-600 text-white rounded-lg shadow hover:bg-gray-700" %>
+  </div>
+<% end %>
