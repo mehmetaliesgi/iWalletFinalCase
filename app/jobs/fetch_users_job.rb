@@ -2,7 +2,7 @@ class FetchUsersJob < ApplicationJob
   queue_as :default
 
   def perform(*arg)
-    conn = Faraday.new(url: 'http://localhost:3001')
+    conn = Faraday.new(url: 'https://jsonplaceholder.typicode.com')
     response = conn.get('/users')
     users = JSON.parse(response.body)
 

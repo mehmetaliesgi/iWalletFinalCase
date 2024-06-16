@@ -69,7 +69,7 @@ class ApiController < ApplicationController
   end
 
   def create_user(user_params, address_params)
-    response = Faraday.new(url: 'http://localhost:3001').post do |request|
+    response = Faraday.new(url: 'https://jsonplaceholder.typicode.com').post do |request|
       request.url '/users'
       request.headers['Content-Type'] = 'application/json'
       
@@ -90,7 +90,7 @@ class ApiController < ApplicationController
   end
 
   def update_user_on_api(user_params, address_params, user_id)
-    conn = Faraday.new(url: 'http://localhost:3001')
+    conn = Faraday.new(url: 'https://jsonplaceholder.typicode.com')
     response = conn.patch("/users/#{user_id}") do |request|
     request.headers['Content-Type'] = 'application/json'
 

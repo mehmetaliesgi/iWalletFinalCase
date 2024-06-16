@@ -4,9 +4,11 @@
     <div class="bg-white rounded-lg shadow-md p-6">
       <img class="w-24 h-24 mx-auto mb-4 rounded-full" src="https://picsum.photos/200/300" alt="Album Image">
       <p class="mb-2"><strong>Başlık:</strong> <%= @album['title'] %></p>
-      <p class="mb-2"><strong>Album bağlantısı:</strong><%= link_to @album_link, @album_link, class: "text-blue-500 underline" %></p>
+      <p class="mb-2"><strong>Album bağlantısı:</strong>
+        <p class="text-clip overflow-hidden "><%= link_to @album_link, @album_link, class: "text-blue-500 underline" %></p>
+      </p>
       <div class="flex justify-end">
-        <%= link_to "Cancel", "#", data: { turbo_frame: "show" }, class: "mt-4 px-4 py-2 bg-gray-800 text-white rounded-lg" %>
+        <%= link_to "Cancel", "#", data: {}, class: "mt-4 px-4 py-2 bg-gray-800 text-white rounded-lg" %>
       </div>
     </div>
   </div>
