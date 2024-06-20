@@ -57,9 +57,7 @@ class ApiController < ApplicationController
   end
 
   def popup
-    album_id = @album['id']
-    @album_link = "https://jsonplaceholder.typicode.com/albums/#{album_id}"  
-    @user = fetch_album_by_id(album_id)
+    @album_link = "https://jsonplaceholder.typicode.com/photos/#{params[:id]}"
   end
 
   private
@@ -131,7 +129,7 @@ class ApiController < ApplicationController
 
   def fetch_album_by_id(album_id)
     conn = Faraday.new(url: 'https://jsonplaceholder.typicode.com')
-    response = conn.get("/albums/#{album_id}")
+    response = conn.get("/photos/#{album_id}")
     JSON.parse(response.body) if response.status == 200
   end
 end
